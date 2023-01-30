@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Canvas } from "react-three-fiber";
 import Planet from "./Planet";
-import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
-import sun from "./images/sun.jpeg";
-import earth from "./images/earth.jpeg";
-import mercury from "./images/mercury.jpeg";
-import venus from "./images/venus.jpeg";
-import mars from "./images/mars.jpeg";
-import jupiter from "./images/jupiter.jpeg";
-import saturn from "./images/saturn.jpeg";
-import uranus from "./images/uranus.jpeg";
-import neptune from "./images/neptune.jpeg";
+import {
+  OrbitControls,
+  PerspectiveCamera,
+  Text,
+  Text3D,
+} from "@react-three/drei";
+
 import {
   rotationSpeeds,
   orbitSpeeds,
   orbitalRadii,
   planetSizes,
+  planetImages,
+  planetsText,
 } from "./constants";
 
 function SolarSystem() {
@@ -35,8 +34,11 @@ function SolarSystem() {
     ],
   });
 
+  const [reset, setReset] = useState(true);
+
   useEffect(() => {
     if (focalPoint !== 0) {
+      setReset(true);
       setPositions({
         sun: [focalPoint + -10, 0, 0],
         planets: [
@@ -55,6 +57,7 @@ function SolarSystem() {
 
   useEffect(() => {
     if (isAnimating) {
+      setReset(false);
       setPositions({
         sun: [-4, 0, 0],
         planets: [
@@ -72,6 +75,7 @@ function SolarSystem() {
   }, [isAnimating]);
 
   const handleReset = () => {
+    setReset(true);
     setFocalPoint(0);
     setPositions({
       sun: [-10, 0, 0],
@@ -91,15 +95,38 @@ function SolarSystem() {
   return (
     <>
       <Canvas style={{ background: "black", height: "95vh", width: "100vw" }}>
+        <Text
+          scale={[10, 10, 10]}
+          position={[0, 20, 0]}
+          color="white"
+          anchorX="center"
+          anchorY="middle"
+        >
+          Solar System
+        </Text>
+
+        {!isAnimating &&
+          reset &&
+          planetsText(focalPoint).map((planet) => (
+            <Text
+              key={planet.name}
+              scale={planet.scale}
+              position={planet.position}
+              color="white"
+              anchorX="center"
+              anchorY="middle"
+            >
+              {planet.name}
+            </Text>
+          ))}
         <ambientLight />
         <Planet
           orbitRadius={0}
           orbitSpeeds={0}
           rotationSpeed={0}
           position={positions.sun}
-          color={"orange"}
           size={2}
-          image={sun}
+          image={planetImages[0]}
           isAnimating={isAnimating}
         />
         {[...Array(8)].map((_, i) => (
@@ -108,9 +135,8 @@ function SolarSystem() {
             orbitSpeed={orbitSpeeds[i]}
             rotationSpeed={rotationSpeeds[i]}
             position={positions.planets[i]}
-            color={color[i]}
             size={isAnimating ? planetSizes[i] : 1}
-            image={planetImages[i]}
+            image={planetImages[i + 1]}
             key={i}
             isAnimating={isAnimating}
           />
@@ -142,25 +168,4 @@ function SolarSystem() {
   );
 }
 
-const color = [
-  "blue",
-  "green",
-  "yellow",
-  "orange",
-  "purple",
-  "pink",
-  "white",
-  "brown",
-  "grey",
-];
-const planetImages = [
-  mercury,
-  venus,
-  earth,
-  mars,
-  jupiter,
-  saturn,
-  uranus,
-  neptune,
-];
 export default SolarSystem;

@@ -1,3 +1,25 @@
+import sun from "./images/sun.jpeg";
+import earth from "./images/earth.jpeg";
+import mercury from "./images/mercury.jpeg";
+import venus from "./images/venus.jpeg";
+import mars from "./images/mars.jpeg";
+import jupiter from "./images/jupiter.jpeg";
+import saturn from "./images/saturn.jpeg";
+import uranus from "./images/uranus.jpeg";
+import neptune from "./images/neptune.jpeg";
+
+export const planetImages = [
+  sun,
+  mercury,
+  venus,
+  earth,
+  mars,
+  jupiter,
+  saturn,
+  uranus,
+  neptune,
+];
+
 export const rotationSpeeds = [
   0.0039, // Mercury
   0.0029, // Venus
@@ -33,3 +55,45 @@ export const orbitalRadii = [
 export const planetSizes = [0.38, 0.95, 1, 0.53, 11.2, 9.45, 4.01, 3.88];
 
 export const planetSizesSmall = [0.38, 0.95, 1, 0.53, 11.2, 9.45, 4.01, 3.88];
+
+export const planetsText = (focalPoint) => {
+  return [
+    {
+      name: "Sun",
+      scale: [0.8, 0.8, 0.8],
+      position: [focalPoint + -10.2, 3, 0],
+    },
+    {
+      name: "Mercury",
+      scale: [0.8, 0.8, 0.8],
+      position: [focalPoint + -6, 2, 0],
+    },
+    {
+      name: "Venus",
+      scale: [0.8, 0.8, 0.8],
+      position: [focalPoint + -3, 2, 0],
+    },
+    { name: "Earth", scale: [1, 1, 1], position: [focalPoint + 0, 2, 0] },
+    { name: "Mars", scale: [0.8, 0.8, 0.8], position: [focalPoint + 3, 2, 0] },
+    {
+      name: "Jupiter",
+      scale: [0.8, 0.8, 0.8],
+      position: [focalPoint + 6, 2, 0],
+    },
+    {
+      name: "Saturn",
+      scale: [0.8, 0.8, 0.8],
+      position: [focalPoint + 9, 2, 0],
+    },
+    {
+      name: "Uranus",
+      scale: [0.8, 0.8, 0.8],
+      position: [focalPoint + 12, 2, 0],
+    },
+    {
+      name: "Neptune",
+      scale: [0.8, 0.8, 0.8],
+      position: [focalPoint + 15, 2, 0],
+    },
+  ];
+};
