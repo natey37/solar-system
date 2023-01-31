@@ -2,6 +2,10 @@
 
 A 3D visualization of our solar system built with React, Three.js, and React-Three-Fiber.
 
+
+https://user-images.githubusercontent.com/20386173/215673584-88455416-3326-42b5-ba23-f46e65d8bca2.mov
+
+
 ## Getting Started
 
 ### Prerequisites:
@@ -37,7 +41,7 @@ React-Three-Fiber
 
 ## Contributing
 
-If you would like to contribute to the development of the button generator, please fork the repository and make a pull request with your changes.
+If you would like to contribute to the development of the solar system, please fork the repository and make a pull request with your changes.
 
 ## Todo
 
