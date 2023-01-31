@@ -88,7 +88,7 @@ function SolarSystem() {
 
   return (
     <>
-      <Canvas style={{ background: "black", height: "95vh", width: "100vw" }}>
+      <Canvas>
         <Text
           scale={[10, 10, 10]}
           position={[0, 20, 0]}
@@ -166,6 +166,7 @@ function SolarSystem() {
 
         <OrbitControls />
       </Canvas>
+      <div className="flex-row">
       <button onClick={() => setIsAnimating(!isAnimating)}>
         {isAnimating ? "Stop Animation" : "Start Animation"}
       </button>
@@ -182,11 +183,12 @@ function SolarSystem() {
         Move Right
       </button>
       <button
-        disabled={isAnimating ? true : false}
+        disabled={isAnimating || (!focalPoint && reset) ? true : false}
         onClick={() => handleReset()}
       >
-        Reset
+        Reset View
       </button>
+      </div>
     </>
   );
 }
