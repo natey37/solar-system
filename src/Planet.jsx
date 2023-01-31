@@ -21,12 +21,17 @@ function Planet(props) {
     ref.current.rotation.y += delta * props.rotationSpeed;
   });
 
+  const handleClickEvents = () => {
+    click(!clicked)
+    props.handleClick(props.index) 
+  }
+
   return (
     <mesh
       {...props}
       ref={ref}
       scale={clicked ? 1.5 : 1}
-      onClick={(event) => click(!clicked)}
+      onClick={(event) => handleClickEvents()}
       onPointerOver={(event) => hover(true)}
       onPointerOut={(event) => hover(false)}
     >
